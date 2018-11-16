@@ -61,7 +61,7 @@ Before start
 
 Need to `standardize` the data X; meaning centering by substracting mean of each column and scaling by standard deviation of each column. ( X as a data with 8 active variables mentioned above )
 
-![](pca_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](figure-markdown_github/unnamed-chunk-3-1.png)
 
 Matrix decomposition : EVD and SVD
 
