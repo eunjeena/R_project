@@ -1,7 +1,7 @@
 PCA
 ================
 Eunjee Na
-2018-11-15
+2018-11-17
 
 **Principal Components Analaysis**
 ==================================
@@ -61,7 +61,7 @@ Before start
 
 Need to `standardize` the data X; meaning centering by substracting mean of each column and scaling by standard deviation of each column. ( X as a data with 8 active variables mentioned above )
 
-![](figure-markdown_github/unnamed-chunk-3-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 Matrix decomposition : EVD and SVD
 
@@ -125,7 +125,7 @@ plot(eigen_values, type='o', xlab="Number of Components", ylab="eigen values", m
 barplot(eigen_values, xlab="Number of Components", ylab="eigen values", main="Barchart")
 ```
 
-![](figure-markdown_github/unnamed-chunk-6-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 Where is the elbow? : *2 componenets*
 
@@ -208,15 +208,15 @@ PC2 <- Z[,2]
 ggplot(Z,aes(PC1, PC2)) + geom_point() + geom_text(aes(label=data$team)) + xlab(percentage[1]) + ylab(percentage[2]) + ggtitle("Scatterplot of individuals on PC1 and PC2") + geom_vline(xintercept = 0) + geom_hline(yintercept = 0)
 ```
 
-![](figure-markdown_github/unnamed-chunk-11-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
-![](figure-markdown_github/unnamed-chunk-12-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 ggplot(Z,aes(PC2, PC3)) + geom_point() + geom_text(aes(label=data$team)) + xlab(percentage[2]) + ylab(percentage[3]) + ggtitle("Scatterplot of individuals on PC2 and PC3") + geom_vline(xintercept = 0) + geom_hline(yintercept = 0)
 ```
 
-![](figure-markdown_github/unnamed-chunk-13-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 Quality of Representation
 =========================
@@ -268,7 +268,7 @@ fmr.pca
 fviz_screeplot(fmr.pca, ncp=8) #dim(X)[2] = 8 = p
 ```
 
-![](figure-markdown_github/unnamed-chunk-16-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 Around 70% of the information (Variance) are retained by the first 2 components.
 
@@ -283,7 +283,7 @@ fviz_pca_var(fmr.pca, col.var='cos2') +
   scale_color_gradient2(low='white', mid='blue', high='red', midpoint=0.5) + theme_minimal()
 ```
 
-![](figure-markdown_github/unnamed-chunk-17-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-17-1.png)
 
 The closer a variable is to the circle of correlation, the better its representation on the factor map.
 
@@ -329,34 +329,20 @@ var_contribution[c(1:6), c(1:4)]
 
 ``` r
 # contribution of variables on PC1
-fviz_pca_contrib(fmr.pca, choice='var', axes =1)
+fviz_contrib(fmr.pca, choice='var', axes =1)
 ```
 
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "var", axes = 1): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-20-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-20-1.png)
 
 *Red dashed line* = the expected average contribution. $\\frac{1}{8} =\\frac{1}{p}$
 
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "var", axes = 2): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-21-1.png)
-
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "var", axes = 1:2): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-21-2.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-21-1.png)![](pca_files/figure-markdown_github/unnamed-chunk-21-2.png)
 
 ``` r
 fviz_pca_var(fmr.pca, col.var="contrib") 
 ```
 
-![](figure-markdown_github/unnamed-chunk-22-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 ``` r
 # + scale_color_gradient2(low="white", mid="blue", 
@@ -372,7 +358,7 @@ Individuals
 fviz_pca_ind(fmr.pca) #if there are classification factors, we can differ individuals' colors based on their factors
 ```
 
-![](figure-markdown_github/unnamed-chunk-23-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-23-1.png)
 
 ### Quality of Individuals
 
@@ -421,27 +407,11 @@ scale_color_gradient2(low="white", mid="blue",
                   high="red", midpoint=15) + theme_minimal()
 ```
 
-![](figure-markdown_github/unnamed-chunk-26-1.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-26-1.png)
 
 ``` r
 # contribution of individuals on PC1
-fviz_pca_contrib(fmr.pca, choice='ind', axes =1)
+fviz_contrib(fmr.pca, choice='ind', axes =1)
 ```
 
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "ind", axes = 1): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-27-1.png)
-
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "ind", axes = 2): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-28-1.png)
-
-    ## Warning in fviz_pca_contrib(fmr.pca, choice = "ind", axes = 1:2): The
-    ## function fviz_pca_contrib() is deprecated. Please use the function
-    ## fviz_contrib() which can handle outputs of PCA, CA and MCA functions.
-
-![](figure-markdown_github/unnamed-chunk-28-2.png)
+![](pca_files/figure-markdown_github/unnamed-chunk-27-1.png) ![](pca_files/figure-markdown_github/unnamed-chunk-28-1.png)![](pca_files/figure-markdown_github/unnamed-chunk-28-2.png)
